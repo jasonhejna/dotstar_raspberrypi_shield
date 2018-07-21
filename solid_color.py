@@ -7,7 +7,7 @@ numpixels = 230 # Number of LEDs in strip
 
 # Here's how to control the strip from any two GPIO pins:
 datapin   = 17
-clockpin  = 27
+clockpin  = 23
 strip     = Adafruit_DotStar(numpixels, datapin, clockpin)
 
 # Alternate ways of declaring strip:
@@ -18,11 +18,12 @@ strip     = Adafruit_DotStar(numpixels, datapin, clockpin)
 
 # Append "order='gbr'" to declaration for proper colors w/older DotStar strips)
 strip.begin()           # Initialize pins for output
-strip.setBrightness(192) # Limit brightness to ~1/4 duty cycle
+strip.setBrightness(255) # Limit brightness to ~1/4 duty cycle
 
 # green, red, blue
 
-for i in range(numpixels):
-    strip.setPixelColor(i, 155, 255, 50)
+while True:
+    for i in range(numpixels):
+        strip.setPixelColor(i, 153, 255, 51)
 
-strip.show()                     # Refresh strip
+    strip.show()                     # Refresh strip

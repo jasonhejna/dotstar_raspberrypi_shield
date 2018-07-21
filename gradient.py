@@ -1,9 +1,10 @@
 #!/usr/bin/python
 
 import time
+import math
 from dotstar import Adafruit_DotStar
 
-numpixels = 230 # Number of LEDs in strip
+numpixels = 150 # Number of LEDs in strip
 
 # Here's how to control the strip from any two GPIO pins:
 datapin   = 17
@@ -18,11 +19,15 @@ strip     = Adafruit_DotStar(numpixels, datapin, clockpin)
 
 # Append "order='gbr'" to declaration for proper colors w/older DotStar strips)
 strip.begin()           # Initialize pins for output
-strip.setBrightness(192) # Limit brightness to ~1/4 duty cycle
+strip.setBrightness(128) # Limit brightness to ~1/4 duty cycle
+
+multiplier = 255 / numpixels
 
 # green, red, blue
 
 for i in range(numpixels):
-    strip.setPixelColor(i, i, 255, 50)
+    increase = int(math.floor(i*multiplier))
+    decrease = 255 - int(math.floor(i*multiplier))
+    strip.setPixelColor(i, increase, decrease, increase)
 
 strip.show()                     # Refresh strip
